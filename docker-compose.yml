@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  quattro_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: quattro_api
+    restart: always
+    volumes:
+      - ./src:/app/src:ro
+    env_file:
+      - .env
+    ports:
+      - 127.0.0.1:8000:8000
+    command: npm run dev
