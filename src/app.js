@@ -3,6 +3,7 @@ import express from "express";
 import { loadEnvFile } from "./utilities/loadEnvFile.js";
 import { cors } from "./middlewares/cors.js";
 import { logger } from "./utilities/logger.js";
+import multer from "multer";
 
 loadEnvFile();
 
@@ -26,6 +27,8 @@ app.use(cors(["http://localhost:5173", "https://app.quattro.properties"]));
 
 // Serve static files
 app.use(express.static(path.join("public")));
+
+app.use(multer);
 
 // Routes
 app.use("/v1/properties", propertiesRouter);

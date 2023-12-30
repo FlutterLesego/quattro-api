@@ -30,4 +30,6 @@ router.route("/:id").delete(deleteProperty).get(getProperty);
 
 router.route("/update/:id").patch(upload.single("card"), updateProperty);
 
+router.route("/update/:id").patch(upload.array("other", 5), updateProperty);
+
 export { router as propertiesRouter };
