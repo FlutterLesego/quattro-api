@@ -1,4 +1,4 @@
-import { Application } from "../../../models/applications.js";
+import { Application } from "../../../models/application.js";
 
 async function getApplications(req, res, next) {
   const applications = await Application.find();

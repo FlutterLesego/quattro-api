@@ -43,6 +43,9 @@ const userSchema = new Schema(
         "technician",
       ],
     },
+    department: {
+      type: String,
+    },
     address: {
       type: String,
     },

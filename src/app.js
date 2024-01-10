@@ -3,7 +3,6 @@ import express from "express";
 import { loadEnvFile } from "./utilities/loadEnvFile.js";
 import { cors } from "./middlewares/cors.js";
 import { logger } from "./utilities/logger.js";
-import multer from "multer";
 
 loadEnvFile();
 
@@ -23,18 +22,16 @@ app.use(express.urlencoded({ extended: true, limit: "5mb" }));
 
 app.use(logger);
 
-app.use(cors(["http://localhost:5173", "https://app.quattro.properties"]));
+app.use(cors(["http://localhost:5173", "https://admin.quattro.properties"]));
 
 // Serve static files
 app.use(express.static(path.join("public")));
-
-app.use(multer);
 
 // Routes
 app.use("/v1/properties", propertiesRouter);
 app.use("/v1/users", usersRouter);
 app.use("/v1/faults", faultsRouter);
 app.use("/v1/applications", applicationsRouter);
-app.use("v1/visitors", visitorsRouter);
+app.use("/v1/visitors", visitorsRouter);
 
 export { app };
