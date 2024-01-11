@@ -105,8 +105,8 @@ function constructImageUrl(propertyName, filename) {
 
   const baseUrl =
     environment === "development"
-      ? "http://localhost:8000"
-      : "https://data.quattro.properties";
+      ? "https://data.quattro.properties"
+      : "http://localhost:8000";
   return `${baseUrl}/images/properties/${propertyName}/${filename}`;
 }
 

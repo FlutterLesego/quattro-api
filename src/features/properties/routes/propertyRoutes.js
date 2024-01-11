@@ -1,6 +1,5 @@
 // properties.js
 import path from "path";
-import * as fs from "node:fs";
 import { Router } from "express";
 import multer from "multer";
 import { getProperties } from "../controllers/getProperties.js";
@@ -8,6 +7,7 @@ import { updateProperty } from "../controllers/updateProperty.js";
 import { deleteProperty } from "../controllers/deleteProperty.js";
 import { getProperty } from "../controllers/getProperty.js";
 import { Property } from "../../../models/property.js";
+import { addProperty } from "../controllers/addProperty.js";
 
 const __dirname = path.resolve();
 
@@ -18,10 +18,7 @@ const multerStorage = multer.diskStorage({
     try {
       const property = await Property.findById(id);
 
-      const propertyName = property.name.toLowerCase();
-      const folderPath = `${__dirname}/public/images/properties/${propertyName}`;
-
-      await fs.promises.mkdir(folderPath, { recursive: true });
+      const folderPath = `${__dirname}/public/images/properties`;
 
       cb(null, folderPath);
     } catch (error) {
@@ -51,6 +48,15 @@ router.route("/update/:id").patch(
     { name: "other", maxCount: 5 },
   ]),
   updateProperty
+);
+
+router.route("/add").post(
+  upload.fields([
+    { name: "card", maxCount: 1 },
+    { name: "other", maxCount: 5 },
+    { name: "floors", maxCount: 10 },
+  ]),
+  addProperty
 );
 
 export { router as propertiesRouter };
