@@ -16,8 +16,6 @@ const multerStorage = multer.diskStorage({
     const { id } = req.params;
 
     try {
-      const property = await Property.findById(id);
-
       const folderPath = `${__dirname}/public/images/properties`;
 
       cb(null, folderPath);

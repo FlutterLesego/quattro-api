@@ -22,9 +22,8 @@ async function addProperty(req, res, next) {
       longitude,
     } = req.body;
 
-    // Create a new property instance
     const newProperty = new Property({
-      name: req.body.name,
+      name,
       description,
       amenities,
       price: {
@@ -44,20 +43,18 @@ async function addProperty(req, res, next) {
         },
       },
       images: {
-        card: "", // No image initially for card
-        floors: [], // No floors images initially
-        other: [], // No other images initially
+        card: "",
+        floors: [],
+        other: [],
       },
     });
 
     console.log(newProperty);
-    // Save the property to MongoDB
+
     await newProperty.save();
 
-    // Create a folder for the property images
     const folderPath = `${__dirname}/public/images/properties`;
 
-    // Handle image upload similar to updateProperty.js
     if (req.files) {
       const cardImage = req.files.card ? req.files.card[0].filename : "";
       const floorsImages = req.files.floors
@@ -83,7 +80,6 @@ async function addProperty(req, res, next) {
         );
       }
 
-      // Save the property with updated image details
       await newProperty.save();
     }
 

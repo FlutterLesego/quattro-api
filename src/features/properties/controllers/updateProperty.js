@@ -48,6 +48,7 @@ async function updateProperty(req, res, next) {
     address.location.longitude =
       req.body?.longitude || property.address.location.longitude;
 
+    console.log(req.body.type);
     await property.save();
 
     res

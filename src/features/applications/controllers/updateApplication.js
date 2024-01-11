@@ -6,10 +6,15 @@ async function updateApplication(req, res, next) {
   try {
     const application = await Application.findById(id);
 
-    application.documentsReceived =
-      req.body.documentsReceived || application.documentsReceived;
     application.adminFeePaid =
-      req.body.adminFeePaid || application.adminFeePaid;
+      req.body.adminFeePaid !== undefined
+        ? req.body.adminFeePaid
+        : application.adminFeePaid;
+
+    application.documentsReceived =
+      req.body.documentsReceived !== undefined
+        ? req.body.documentsReceived
+        : application.documentsReceived;
 
     await application.save();
 

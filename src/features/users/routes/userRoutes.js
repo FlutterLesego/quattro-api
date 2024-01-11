@@ -35,7 +35,7 @@ const upload = multer({ storage: multerStorage });
 const router = Router();
 
 router.route("/").get(getUsers);
-router.route("/").post(addUser);
+router.route("/add").post(upload.single("avatar"), addUser);
 router.route("/update/:id").patch(upload.single("avatar"), updateUser);
 
 export { router as usersRouter };
