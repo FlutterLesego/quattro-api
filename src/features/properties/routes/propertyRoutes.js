@@ -37,9 +37,7 @@ const upload = multer({ storage: multerStorage });
 const router = Router();
 
 router.route("/").get(getProperties);
-
 router.route("/:id").delete(deleteProperty).get(getProperty);
-
 router.route("/update/:id").patch(
   upload.fields([
     { name: "card", maxCount: 1 },
@@ -47,7 +45,6 @@ router.route("/update/:id").patch(
   ]),
   updateProperty
 );
-
 router.route("/add").post(
   upload.fields([
     { name: "card", maxCount: 1 },
@@ -56,5 +53,6 @@ router.route("/add").post(
   ]),
   addProperty
 );
+router.route("/delete/:id").delete(deleteProperty);
 
 export { router as propertiesRouter };

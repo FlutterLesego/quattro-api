@@ -1,3 +1,4 @@
+// usersRoutes.js
 import { Router } from "express";
 import path from "path";
 import * as fs from "node:fs";
@@ -6,6 +7,7 @@ import { getUsers } from "../controllers/getUsers.js";
 import { User } from "../../../models/user.js";
 import { updateUser } from "../controllers/updateUser.js";
 import { addUser } from "../controllers/addUser.js";
+import { deleteUser } from "../controllers/deleteUser.js"; // Import the new controller
 
 const __dirname = path.resolve();
 
@@ -37,5 +39,6 @@ const router = Router();
 router.route("/").get(getUsers);
 router.route("/add").post(upload.single("avatar"), addUser);
 router.route("/update/:id").patch(upload.single("avatar"), updateUser);
+router.route("/delete/:id").delete(deleteUser);
 
 export { router as usersRouter };
