@@ -7,7 +7,7 @@ import { getUsers } from "../controllers/getUsers.js";
 import { User } from "../../../models/user.js";
 import { updateUser } from "../controllers/updateUser.js";
 import { addUser } from "../controllers/addUser.js";
-import { deleteUser } from "../controllers/deleteUser.js"; // Import the new controller
+import { deleteUser } from "../controllers/deleteUser.js";
 
 const __dirname = path.resolve();
 

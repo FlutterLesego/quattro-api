@@ -1,4 +1,3 @@
-// properties.js
 import path from "path";
 import { Router } from "express";
 import multer from "multer";

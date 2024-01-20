@@ -16,7 +16,7 @@ const visitorSchema = new Schema(
     mobile: {
       type: String,
     },
-    id: {
+    idCard: {
       type: String,
     },
   },

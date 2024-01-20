@@ -6,9 +6,15 @@ async function updateApplication(req, res, next) {
   try {
     const application = await Application.findById(id);
 
+    if (!req.body.adminFeePaid) {
+      // application.property = null;
+      application.bed = null;
+      // application.room = null;
+    }
+
     application.adminFeePaid =
       req.body.adminFeePaid !== undefined
-        ? req.body.adminFeePaid
+        ? req.body.adminFeePaid === "Yes"
         : application.adminFeePaid;
 
     application.documentsReceived =
@@ -16,7 +22,15 @@ async function updateApplication(req, res, next) {
         ? req.body.documentsReceived
         : application.documentsReceived;
 
+    console.log("Received request payload:", req.body);
+    console.log("Received adminFeePaid from request:", req.body.adminFeePaid);
+
     await application.save();
+
+    console.log(
+      "Updated adminFeePaid in the database:",
+      application.adminFeePaid
+    );
 
     res
       .status(200)
