@@ -19,6 +19,10 @@ const visitorSchema = new Schema(
     idCard: {
       type: String,
     },
+    isVisiting: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );
