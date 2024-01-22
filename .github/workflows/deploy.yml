@@ -1,0 +1,17 @@
+name: Deploy via SSH
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy app
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        host: 123.45.67.89
+        username: ${{ secrets.FlutterLesego }}
+        password: ${{ secrets.Pin@970513 }}
+        
+        script: |
+          cd ~/var/www
+          git clone https://${{ secrets.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 }}:x-oauth-basic@github.com/FlutterLesego/quattro-api.git
+          echo "Deployment successful to Digital Ocean"
